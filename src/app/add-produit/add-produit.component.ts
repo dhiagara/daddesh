@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
+import { ServiceService } from '../service.service';
 @Component({
   selector: 'app-add-produit',
   templateUrl: './add-produit.component.html',
@@ -12,11 +13,11 @@ export class AddProduitComponent implements OnInit {
     nom: ['',[Validators.required,Validators.minLength(3),Validators.maxLength(10)]],
     category: ['',],
     couleur: ['',],
-    pointure: ['',],
+    type: ['',],
    
   });
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,public sv:ServiceService) {
     
 
    }
@@ -28,11 +29,14 @@ export class AddProduitComponent implements OnInit {
   }
   onSubmit(){
     console.log(this.addProduit.value);
-    
     const data=this.addProduit.value;
+    this.sv.createProduit(data).subscribe((r)=>{
+      console.log(r);
+          })
+  
     
 
-    
+
   }
 
 }
