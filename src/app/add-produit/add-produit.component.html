@@ -1,0 +1,75 @@
+<div class="container"> 
+    <div class="col-md-12">  
+       
+        <div class="col-md-8"> 
+            <div class="portlet light bordered">
+                <div class="portlet-title tabbable-line">
+                    <div class="caption caption-md">
+                        <i class="icon-globe theme-font hide"></i>
+                        <span class="caption-subject font-blue-madison bold uppercase">Your info</span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="home">
+                                <form [formGroup]="addProduit" class="needs-validation" (ngSubmit)="onSubmit()" novalidate>
+                                  <div class="form-group">
+                                    <label for="inputName">Nom de produit</label>
+                                    <input type="text" class="form-control" formControlName="nom" id="inputName" placeholder="Nom de produit">
+                                  </div>
+                                    <div class="form-group">
+                                    <label for="inputCategory">Category</label>
+                                    <select class="form-control" id="inputCategory" formControlName="category" aria-label="Default select example">
+                                        <option selected>Femme</option>
+                                        <option value="1">Fille</option>
+                                        <option value="2">Garçon</option>
+                                      </select>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="inputPointure">Pointure</label>
+                                    <select class="form-control" id="inputPointure" formControlName="pointure" aria-label="Default select example">
+                                        <option selected>36</option>
+                                        <option value="1">37</option>
+                                        <option value="2">38</option>
+                                        <option value="3">39</option>
+                                        <option value="3">40</option>
+                                      </select>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="inputCouleur">Couleur</label>
+                                    <select class="form-control" id="inputCouleur" formControlName="couleur" aria-label="Default select example">
+                                        <option selected>Rouge</option>
+                                        <option value="1">Noir</option>
+                                        <option value="2">Blanc</option>
+                                        <option value="3">vert</option>
+                                        <option value="3">bleu</option>
+                                        <option value="3">jaune</option>
+                                      </select>
+                                   
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="exampleInputFile">File input</label>
+                                    <input type="file" id="exampleInputFile">
+                                    <p class="help-block">Example block-level help text here.</p>
+                                  </div>
+                                  <div class="checkbox">
+                                    <label>
+                                      <input type="checkbox"> Check me out
+                                    </label>
+                                  </div>
+                                  <button type="submit" class="btn btn-default">Submit</button>
+                                </form>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="profile">Profile</div>
+                            <div role="tabpanel" class="tab-pane" id="messages">Messages</div>
+                            <div role="tabpanel" class="tab-pane" id="settings">Settings</div>
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
