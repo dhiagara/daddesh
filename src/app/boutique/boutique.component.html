@@ -44,85 +44,91 @@
         <div class="card-body card-filter mt-2 py-3">
           <h4 class="card-category">Catégorie</h4>
           <div class="input-group mb-3">
-            <select class="custom-select" id="inputGroupSelect01">
+            <select class="custom-select"(change)="onSelectCategory($event)" id="inputGroupSelect01">
               <option selected>Catégorie</option>
-              <option value="1">Femme</option>
-              <option value="2">Fille</option>
-              <option value="3">Garçon</option>
+              <option value="Femme">Femme</option>
+              <option value="Fille">Fille</option>
+              <option value="Garçon">Garçon</option>
             </select>
           </div>
-          <h4 class="card-category">Pointure</h4>
-          <div class="input-group mb-3">
-            <select class="custom-select" id="inputGroupSelect02">
-              <option selected>Pointure</option>
-              <option value="1">36</option>
-              <option value="2">37</option>
-              <option value="3">38</option>
-              <option value="4">39</option>
-              <option value="5">40</option>
-            </select>
-          </div>
+          <div class="form-group">
+            <h4 class="card-category">produits</h4>
+                                    <select class="form-control" (change)="onSelectProduit($event)"  id="inputPointure" formControlName="produit" aria-label="Default select example">
+                                      
+                                        <option *ngFor="let produit of produits" value="{{produit}}">{{produit}}</option>
+                                      </select>
+                                  </div>
+                                  <div class="form-group" >
+                                    <label for="inputPointure">type</label>
+  
 
-          <h4 class="card-category">Couleur</h4>
-          <div class="input-group mb-3">
-            <select class="custom-select" id="inputGroupSelect03">
-              <option selected>Couleur</option>
-              <option value="1">Noir</option>
-              <option value="2">blanc</option>
-              <option value="3">bleu</option>
-              <option value="4">vert</option>
-              <option value="5">rouge</option>
-              <option value="6">jaune</option>
-            </select>
-          </div>
+                                      <select class="form-control" *ngIf="produitSelected=='Sacs' && CategorySelected=='Femme'"  id="inputPointure" formControlName="type" aria-label="Default select example">
+                                        <option value="">Select a type</option>
+                                        <option   *ngFor="let produit of femmeSacs" value="{{produit}}">{{produit}}</option>
+                          
+                                      </select>
+                                      <select class="form-control" *ngIf="produitSelected=='' || CategorySelected==''"  id="inputPointure" formControlName="type" aria-label="Default select example">
+                                        <option value="">Select a type</option>
+                                        
+                                      </select>
+                                      <select class="form-control" *ngIf="produitSelected=='Sacs'&& CategorySelected=='Fille'"  id="inputPointure" formControlName="type" aria-label="Default select example"> > 
+                                          <option *ngFor="let produit of fillesSacs" value="{{produit}}">{{produit}}</option>
+                                        </select>
+                                          <select class="form-control" id="inputPointure" formControlName="type" *ngIf="produitSelected=='Sacs'&& CategorySelected=='Garçon'" > 
+                                            <option *ngFor="let produit of garconsSacs" value="{{produit}}">{{produit}}</option>
+                                          </select>
+
+                                      <select class="form-control" id="inputPointure" formControlName="type" *ngIf="produitSelected=='Chaussures'&& CategorySelected=='Femme'" > 
+                                        <option *ngFor="let produit of femmeChaussures" value="{{produit}}">{{produit}}</option>
+                                      </select>
+                                      <select class="form-control" id="inputPointure" formControlName="type" *ngIf="produitSelected=='Chaussures'&& CategorySelected=='Fille'" > 
+                                        <option *ngFor="let produit of fillesChaussures" value="{{produit}}">{{produit}}</option>
+                                      </select>
+                                      <select class="form-control" id="inputPointure" formControlName="type" *ngIf="produitSelected=='Chaussures'&& CategorySelected=='Garçon'" > 
+                                        <option *ngFor="let produit of garconsChaussures" value="{{produit}}">{{produit}}</option>
+                                      </select>
+
+                                      <select class="form-control" id="inputPointure" formControlName="type" *ngIf="produitSelected=='Accessoires'&& CategorySelected=='Garçon'" > 
+                                        <option *ngFor="let produit of garconsAccessoires" value="{{produit}}">{{produit}}</option>
+                                      </select>
+                                      <select class="form-control" id="inputPointure" formControlName="type" *ngIf="produitSelected=='Accessoires'&& CategorySelected=='Fille'" > 
+                                        <option *ngFor="let produit of fillesAccessoires" value="{{produit}}">{{produit}}</option>
+                                      </select>
+                                      <select class="form-control" id="inputPointure" formControlName="type" *ngIf="produitSelected=='Accessoires'&& CategorySelected=='Femme'" > 
+                                        <option *ngFor="let produit of femmeAccessoires" value="{{produit}}">{{produit}}</option>
+                                      </select>
+                                     
+                                      
+                                      
+                                   
+                                  </div>
+                                 
         </div>
       </div>
 
       <div class="sidebar-right">
-        <div class="produit">
-          <div class="produit-item">
-            <a href="#" class="item-img">
-              <img src="assets/images/sacfemme.png"
+        <div class="produit" id="main-container">
+          <div class="produit-item" *ngFor="let item of crudApi.listData">
+            <a (click)="onOpenModal(item)" class="item-img">
+              <img src="{{this.crudApi.base_path+'/findImage/'+item.id+'/'+0}}"
+              style = "height :200px;width:fil-content"
             /></a>
-            <p class="item-text">Sac a main, Femme</p>
-            <p class="item-price-after">39.000 DT</p>
+            <p class="item-text">{{item.category}}</p>
+            <p class="item-price-after">{{item.type}}T</p>
             <div class="footer-icons">
-              <p class="item-price-before">30.000 DT</p>
+              <p class="item-price-before">{{item.nom}}</p>
 
               <a href="#" class="ajouter-produit expanded"> </a>
             </div>
             <a href="#" class="ajouter-pan">Ajouter au panier</a>
           </div>
 
-          <div class="produit-item">
-            <a href="#" class="item-img">
-              <img src="assets/images/sandalefille.png"
-            /></a>
-            <p class="item-text">Pantoufles d'été, Fille</p>
-            <p class="item-price-after">15.000 DT</p>
-            <div class="footer-icons">
-              <p class="item-price-before">30.000 DT</p>
-
-              <a href="#" class="ajouter-produit expanded"> </a>
-            </div>
-            <a href="#" class="ajouter-pan">Ajouter au panier</a>
-          </div>
-          <div class="produit-item">
-            <a href="#" class="item-img">
-              <img src="assets/images/accessoirefemme.png"
-            /></a>
-            <p class="item-text">Long collier, Femme</p>
-            <p class="item-price-after">18.000 DT</p>
-            <div class="footer-icons">
-              <p class="item-price-before">35.000 DT</p>
-
-              <a href="#" class="ajouter-produit expanded"> </a>
-            </div>
-            <a href="#" class="ajouter-pan">Ajouter au panier</a>
-          </div>
+     
+         
           <div class="produit-item">
             <a href="#" class="item-img">
               <img src="assets/images/elastiquecheveux.png"
+          
             /></a>
             <p class="item-text">Élastique cheveux, Fille</p>
             <p class="item-price-after">6.000 DT</p>
@@ -239,6 +245,42 @@
       </div>
     </div>
   </section>
+
+
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container pb-5 mb-sm-1">
+          <!-- Categories grid-->
+          <div class="row">
+              <!-- Category-->
+              
+                  <div class="card border-0 mb-grid-gutter">
+                      <a class="card-img-tiles" href="shop-style1-ls.html">
+                          <div class="main-img"><img src="{{this.crudApi.base_path+'/findImage/'+produit.id+'/'+0}}" alt="Clothing"></div>
+                          <div class="thumblist"><img src="{{this.crudApi.base_path+'/findImage/'+produit.id+'/'+1}}" alt="Clothing"></div>
+                      </a>
+                      <div class="card-body border mt-n1 py-4 text-center">
+                          <h2 class="h5 mb-1">Clothing</h2><span class="d-block mb-3 font-size-xs text-muted">Starting from <span class="font-weight-semibold">$49.99</span></span><a class="btn btn-pill btn-outline-primary btn-sm" href="shop-style1-ls.html">Shop clothing</a>
+                      </div>
+                  </div>
+              
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
   
 

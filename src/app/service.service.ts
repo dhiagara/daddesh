@@ -6,7 +6,7 @@ import {Observable} from 'rxjs'
   providedIn: 'root'
 })
 export class ServiceService {
-
+  listData : [];
   base_path="http://localhost:8081/daddesh/produit"
   constructor(private http: HttpClient) { }
   httpOptions = {
@@ -14,11 +14,14 @@ export class ServiceService {
         'Content-Type' : 'application/json'
       })
     }
-  createProduit(produit): Observable<any>{
+    httpfileOptions = {
+      headers : new HttpHeaders({
+          'Content-Type' : 'multipart/form-data'
+        })
+      }
+  createProduit(formData:FormData): Observable<any>{
     return this.http
-    .post<any>(this.base_path+"/add",JSON.stringify(produit),this.httpOptions)
-    
-    
+    .post<any>(this.base_path+"/add",formData) 
   }
   getAllstudents(): Observable<any>{
     return this.http
@@ -27,6 +30,10 @@ export class ServiceService {
   deleteStudents(id): Observable<any>{
     return this.http
     .delete<any>(this.base_path+'/'+id,this.httpOptions) 
+  }
+  getAll(): Observable<any> {
+   
+    return this.http.get(this.base_path+"/");
   }
 
 }

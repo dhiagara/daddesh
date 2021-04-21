@@ -490,6 +490,8 @@ li {
   margin: 10px;
   text-align: left;
   gap: 5px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
 }
 
 .sidebar .sidebar-right .produit .produit-item {

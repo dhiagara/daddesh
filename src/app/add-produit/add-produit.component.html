@@ -21,37 +21,69 @@
                                   </div>
                                     <div class="form-group">
                                     <label for="inputCategory">Category</label>
-                                    <select class="form-control" id="inputCategory" formControlName="category" aria-label="Default select example">
-                                        <option selected>Femme</option>
-                                        <option value="1">Fille</option>
-                                        <option value="2">Garçon</option>
+                                    <select class="form-control" (change)="onSelectCategory($event)" id="inputCategory" formControlName="category" aria-label="Default select example">
+                                        <option value="Femme" selected>Femme</option>
+                                        <option value="Fille">Fille</option>
+                                        <option value="Garçon">Garçon</option>
                                       </select>
                                   </div>
                                   <div class="form-group">
-                                    <label for="inputPointure">Pointure</label>
-                                    <select class="form-control" id="inputPointure" formControlName="type" aria-label="Default select example">
-                                        <option selected>36</option>
-                                        <option value="1">37</option>
-                                        <option value="2">38</option>
-                                        <option value="3">39</option>
-                                        <option value="3">40</option>
+                                    <label for="inputPointure">Produits</label>
+                                    <select class="form-control" (change)="onSelectProduit($event)"  id="inputPointure" formControlName="produit" aria-label="Default select example">
+                                        <option *ngFor="let produit of produits" value="{{produit}}">{{produit}}</option>
                                       </select>
                                   </div>
-                                  <div class="form-group">
-                                    <label for="inputCouleur">Couleur</label>
-                                    <select class="form-control" id="inputCouleur" formControlName="couleur" aria-label="Default select example">
-                                        <option selected>Rouge</option>
-                                        <option value="1">Noir</option>
-                                        <option value="2">Blanc</option>
-                                        <option value="3">vert</option>
-                                        <option value="3">bleu</option>
-                                        <option value="3">jaune</option>
+                                  <div class="form-group" >
+                                    <label for="inputPointure">Produits</label>
+  
+
+                                      <select class="form-control" *ngIf="produitSelected=='Sacs' && CategorySelected=='Femme'"  id="inputPointure" formControlName="type" aria-label="Default select example">
+                                        <option value="">Select a type</option>
+                                        <option   *ngFor="let produit of femmeSacs" value="{{produit}}">{{produit}}</option>
+                          
                                       </select>
+                                      <select class="form-control" *ngIf="produitSelected=='' || CategorySelected==''"  id="inputPointure" formControlName="type" aria-label="Default select example">
+                                        <option value="">Select a type</option>
+                                        
+                          
+                                      </select>
+                                      <select class="form-control" *ngIf="produitSelected=='Sacs'&& CategorySelected=='Fille'"  id="inputPointure" formControlName="type" aria-label="Default select example"> > 
+                                          <option *ngFor="let produit of fillesSacs" value="{{produit}}">{{produit}}</option>
+                                        </select>
+                                          <select class="form-control" id="inputPointure" formControlName="type" *ngIf="produitSelected=='Sacs'&& CategorySelected=='Garçon'" > 
+                                            <option *ngFor="let produit of garconsSacs" value="{{produit}}">{{produit}}</option>
+                                          </select>
+
+                                      <select class="form-control" id="inputPointure" formControlName="type" *ngIf="produitSelected=='Chaussures'&& CategorySelected=='Femme'" > 
+                                        <option *ngFor="let produit of femmeChaussures" value="{{produit}}">{{produit}}</option>
+                                      </select>
+                                      <select class="form-control" id="inputPointure" formControlName="type" *ngIf="produitSelected=='Chaussures'&& CategorySelected=='Fille'" > 
+                                        <option *ngFor="let produit of fillesChaussures" value="{{produit}}">{{produit}}</option>
+                                      </select>
+                                      <select class="form-control" id="inputPointure" formControlName="type" *ngIf="produitSelected=='Chaussures'&& CategorySelected=='Garçon'" > 
+                                        <option *ngFor="let produit of garconsChaussures" value="{{produit}}">{{produit}}</option>
+                                      </select>
+
+                                      <select class="form-control" id="inputPointure" formControlName="type" *ngIf="produitSelected=='Accessoires'&& CategorySelected=='Garçon'" > 
+                                        <option *ngFor="let produit of garconsAccessoires" value="{{produit}}">{{produit}}</option>
+                                      </select>
+                                      <select class="form-control" id="inputPointure" formControlName="type" *ngIf="produitSelected=='Accessoires'&& CategorySelected=='Fille'" > 
+                                        <option *ngFor="let produit of fillesAccessoires" value="{{produit}}">{{produit}}</option>
+                                      </select>
+                                      <select class="form-control" id="inputPointure" formControlName="type" *ngIf="produitSelected=='Accessoires'&& CategorySelected=='Femme'" > 
+                                        <option *ngFor="let produit of femmeAccessoires" value="{{produit}}">{{produit}}</option>
+                                      </select>
+                                     
+                                      
+                                      
                                    
                                   </div>
+                                 
                                   <div class="form-group">
                                     <label for="exampleInputFile">File input</label>
-                                    <input type="file" id="exampleInputFile">
+                                    <input type="file"  accept="image/*" (change)="onSelectFile($event)" multiple  id="exampleInputFile" />
+                                    <div style="display: inline-block;" *ngFor="let imgURL of imgURL">
+                                    <img [src]="imgURL" height="200" width="200" *ngIf="imgURL"></div>
                                     <p class="help-block">Example block-level help text here.</p>
                                   </div>
                                   <div class="checkbox">
