@@ -10,6 +10,14 @@ import { FooterComponent } from './footer/footer.component';
 import { AddProduitComponent } from './add-produit/add-produit.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NavSideComponent } from './admin/nav-side/nav-side.component';
+import { UsersComponent } from './admin/users/users.component';
+import { HomeComponent } from './home/home.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr';
+import { ProfileComponent } from './profile/profile.component';
+import { PanierComponent } from './panier/panier.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +27,16 @@ import { HttpClientModule } from '@angular/common/http';
     SidebarComponent,
     FooterComponent,
     AddProduitComponent,
+<<<<<<< HEAD
+=======
+    SignInComponent,
+    SignUpComponent,
+    NavSideComponent,
+    UsersComponent,
+    HomeComponent,
+    ProfileComponent,
+    PanierComponent,
+>>>>>>> b70b45c... admin+ modal produit
   
   ],
   imports: [
@@ -26,6 +44,12 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }),// ToastrModule added
   ],
   providers: [],
   bootstrap: [AppComponent]

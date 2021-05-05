@@ -7,21 +7,22 @@
         <div id="right">
           <ul>
             <li><a routerLink="addproduit" class="custom_btn"> add </a></li>
-            <li><a href="boutique.html" class="custom_btn"> Boutique </a></li>
-            <li><a href="bbp.html" class="custom_btn"> Blog </a></li>
-            <li><a href="contact.html" class="custom_btn"> Contact </a></li>
-            <li><a href="CCM.html" class="custom_btn"> CCM </a></li>
+            <li><a href="" class="custom_btn"> Boutique </a></li>
+            <li><a href="" class="custom_btn"> Blog </a></li>
+            <li><a href="" class="custom_btn"> Contact </a></li>
+            <li><a href="" class="custom_btn"> CCM </a></li>
             <li>
-              <a href="panier.html"> <img src="assets/images/panier.png" /> </a>
+              <a routerLink="panier"> <img src="assets/images/panier.png" /> </a>
             </li>
             <li>
-              <a href="#"> <img src="/compte.png" /> </a>
+              <a routerLink="profile">  <img onError="this.hidden='true'" style="height: 40px;width: 40px;"   class="rounded-circle" src="{{image }}"  /> </a>
             </li>
             <li>
               <a href="favories.html"> <img src="assets/images/favpage.png" /> </a>
             </li>
             <li>
-              <a href="#"> <img src="assets/images/recherche.png" /> </a>
+
+              <a routerLink="profile"  (click)="signout()">  <img src="assets/images/recherche.png" /> </a>
             </li>
           </ul>
         </div>

@@ -1,0 +1,44 @@
+<div class="container"> 
+  
+ <div class="line"></div>
+    <div class="conntect-compte-section" style="margin-bottom: 10%;">
+    <h1 class="section-compte-title" style="margin-bottom: 12%;">Se connecter </h1>
+    <form #loginform="ngForm"  (ngSubmit)="loginUser()" >
+    <small class="text-danger">{{message}}</small>
+      <div class="form-group">
+        <input type="email" class="form-control"  name="email" placeholder="Email" [(ngModel)]="user.emailId" required pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"
+
+        #email="ngModel" 
+       [class.is-invalid]="email.invalid && email.touched"  >
+       <!-- <small class="text-danger" [class.d-none]="email.valid ||email.untouched" >email is required</small> -->
+       <div *ngIf="email.errors && (email.invalid && email.touched)">
+         <small class="text-danger" *ngIf="email.errors.required">Email is required field</small>
+         <small class="text-danger" *ngIf="email.errors.pattern">Enter the valid email</small>
+
+      </div>
+      
+       <input type="password" class="form-control"   name="password" placeholder="Mot de passe"  [(ngModel)]="user.password" required
+       #password="ngModel"
+       [class.is-invalid]="password.invalid && password.touched"  >
+       <small class="text-danger" [class.d-none]="password.valid ||password.untouched" >password is required</small>
+
+    </div>
+    <a href="#"><p class="mdp-oublié"> Mot de passe oublié ?</p> </a>
+    <input  [disabled]="loginform.form.invalid" type="submit" value="Se connecter"  />    
+    <p class="ou-connecxion"> Ou se connecter avec </p>
+    
+     <!-- <a href="#" class="btn border-gray m-1"><i class="fab fa-facebook"></i></a>
+    <a href="#" class="btn border-gray m-1"><i class="fab fa-google"></i></a> -->
+    <a href="#" class="btn-compte border-gray m-1"><i class="fab fa-facebook"></i></a>
+    <p class="float-right" id="reg" [routerLink]="['/register']">New user ? Register here</p>
+
+    <a href="#" class="btn-compte border-gray m-1"><i class="fab fa-google"></i></a>
+    
+  </form>
+ 
+ 
+</div>
+ 
+  
+ 
+</div>

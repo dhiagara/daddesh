@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+ 
 }
 /* main style */
 body {
@@ -595,6 +596,9 @@ li {
   background-color: #272727;
   color: #ffffffbd;
   font-size: 14px;
+    bottom: 0;
+    right: 0;
+    left: 0;
 }
 .footer .main-footer {
   display: flex;
@@ -602,6 +606,7 @@ li {
   align-items: flex-start;
   margin: 0 100px;
   padding-top: 50px;
+  
 }
 .footer .main-footer .socialMedia {
   display: flex;
